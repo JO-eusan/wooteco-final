@@ -14,6 +14,7 @@ public class InputView {
 	public static final String FUNCTION_3 = "3. 페어 초기화";
 	public static final String FUNCTION_Q = "Q. 종료";
 	private static final String SELECT_COURSE_MESSAGE = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+	private static final String EXIST_MATCHING_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 
 	public String readFunction() {
 		System.out.println(SELECT_FUNCTION_MESSAGE);
@@ -35,6 +36,16 @@ public class InputView {
 		return input;
 	}
 
+	public String readYesOrNo() {
+		System.out.println();
+		System.out.println(EXIST_MATCHING_MESSAGE);
+
+		String input = scanner.nextLine();
+		validateAnswer(input);
+
+		return input;
+	}
+
 	private void validateFunction(String input) {
 		if(!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
 			throw new IllegalArgumentException("제공하지 않는 기능입니다.");
@@ -49,6 +60,12 @@ public class InputView {
 		if(!Course.validateInclusion(tokens[0]) || !Level.validateInclusion(tokens[1])
 			|| !missionManager.findByLevel(Level.getLevel(tokens[1])).contains(tokens[2])) {
 			throw new IllegalArgumentException("제공하는 과정, 레벨, 미션을 입력하세요.");
+		}
+	}
+
+	private void validateAnswer(String input) {
+		if(!input.equals("네") && !input.equals("아니오")) {
+			throw new IllegalArgumentException("예, 아니오만 가능합니다.");
 		}
 	}
 }

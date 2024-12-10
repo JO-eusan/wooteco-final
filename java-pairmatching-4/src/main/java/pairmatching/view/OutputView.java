@@ -1,10 +1,12 @@
 package pairmatching.view;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.MissionManager;
+import pairmatching.model.Pair;
 
 public class OutputView {
 
@@ -13,7 +15,8 @@ public class OutputView {
 	private static final String COURSE_MESSAGE = "과정: %s";
 	private static final String MISSION_MESSAGE = "미션:";
 	private static final String LEVEL_MESSAGE = "  - %s: %s";
-	public static final String DELIMITER = " | ";
+	private static final String DELIMITER = " | ";
+	private static final String PAIR_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 
 	public void printErrorMessage(IllegalArgumentException e) {
 		System.out.println(ERROR_PREFIX + e.getMessage());
@@ -32,5 +35,14 @@ public class OutputView {
 			System.out.printf(LEVEL_MESSAGE + "\n", level, String.join(DELIMITER, missionManager.findByLevel(level)));
 		}
 		System.out.println(SEPARATE_LINE);
+	}
+
+	public void printPairs(List<Pair> pairs) {
+		System.out.println();
+		System.out.println(PAIR_RESULT_MESSAGE);
+		for(Pair pair : pairs) {
+			System.out.println(pair);
+		}
+		System.out.println();
 	}
 }

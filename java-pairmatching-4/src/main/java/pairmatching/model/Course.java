@@ -22,6 +22,15 @@ public enum Course {
 		return false;
 	}
 
+	public static Course getCourse(String input) {
+		for(Course course : values()) {
+			if(course.name.equals(input)) {
+				return course;
+			}
+		}
+		return null;
+	}
+
 	public static List<String> getNames() {
 		List<String> names = new ArrayList<>();
 		for(Course course : values()) {

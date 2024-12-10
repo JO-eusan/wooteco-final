@@ -1,22 +1,23 @@
 package pairmatching.controller;
 
-import pairmatching.model.Crew;
-import pairmatching.model.CrewManager;
-import pairmatching.model.Mission;
 import pairmatching.model.MissionManager;
+import pairmatching.model.crewManager.BackendManager;
+import pairmatching.model.crewManager.FrontendManager;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatchingController {
 	private InputView inputView;
 	private OutputView outputView;
-	private CrewManager crewManager;
+	private BackendManager backendManager;
+	private FrontendManager frontendManager;
 	private MissionManager missionManager;
 
-	public MatchingController(CrewManager crewManager, MissionManager missionManager) {
+	public MatchingController(BackendManager backendManager, FrontendManager frontendManager, MissionManager missionManager) {
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
-		this.crewManager = crewManager;
+		this.backendManager = backendManager;
+		this.frontendManager = frontendManager;
 		this.missionManager = missionManager;
 	}
 
@@ -56,17 +57,37 @@ public class MatchingController {
 	private void pairMatching() {
 		outputView.printCourse(missionManager);
 		String[] selectedCourse = selectCourse();
+		String course = selectedCourse[0];
+		String level = selectedCourse[1];
+		String mission = selectedCourse[2];
 
+
+		if(missionManager.findByLevelAndName(level, mission).getPairs() != null &&
+			selectAnswer().equals("아니오")) {
+			return;
+		}
+
+		if(course.equals("백엔드")) {
+			missionManager.matchPair(level, mission, backendManager.matchPair());
+		}
+		if(course.equals("프론트엔드")) {
+			missionManager.matchPair(level, mission, frontendManager.matchPair());
+		}
+		outputView.printPairs(missionManager.findByLevelAndName(level, mission).getPairs());
 	}
 
 	private void pairCheck() {
 		outputView.printCourse(missionManager);
 		String[] selectedCourse = selectCourse();
+		String course = selectedCourse[0];
+		String level = selectedCourse[1];
+		String mission = selectedCourse[2];
 
+		outputView.printPairs(missionManager.findByLevelAndName(level, mission).getPairs());
 	}
 
 	private void pairReset() {
-
+		missionManager.resetAllPairs();
 	}
 
 	private String[] selectCourse() {
@@ -78,5 +99,16 @@ public class MatchingController {
 			selectCourse();
 		}
 		return null;
+	}
+
+	private String selectAnswer() {
+		try {
+			String answer = inputView.readYesOrNo();
+			return answer;
+		} catch(IllegalArgumentException e) {
+			outputView.printErrorMessage(e);
+			selectAnswer();
+		}
+		return "";
 	}
 }

@@ -6,25 +6,28 @@ import java.util.Scanner;
 
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
-import pairmatching.model.CrewManager;
 import pairmatching.model.MissionManager;
+import pairmatching.model.crewManager.BackendManager;
+import pairmatching.model.crewManager.FrontendManager;
 import pairmatching.view.OutputView;
 
 public class FileController {
-	OutputView outputView;
-	CrewManager crewManager;
-	MissionManager missionManager;
+	private OutputView outputView;
+	private BackendManager backendManager;
+	private FrontendManager frontendManager;
+	private MissionManager missionManager;
 
-	public FileController(CrewManager crewManager, MissionManager missionManager) {
+	public FileController(BackendManager backendManager, FrontendManager frontendManager, MissionManager missionManager) {
 		this.outputView = new OutputView();
-		this.crewManager = crewManager;
+		this.backendManager = backendManager;
+		this.frontendManager = frontendManager;
 		this.missionManager = missionManager;
 	}
 
 	public void initializeData(String backendPath, String frontendPath) {
 		try {
-			createCrew(Course.BACKEND, loadFile(backendPath));
-			createCrew(Course.FRONTEND, loadFile(frontendPath));
+			createBackendCrew(Course.BACKEND, loadFile(backendPath));
+			createFrontendCrew(Course.FRONTEND, loadFile(frontendPath));
 		} catch (FileNotFoundException e) {
 			outputView.printFileErrorMessage(e);
 		}
@@ -37,9 +40,15 @@ public class FileController {
 		return scanner;
 	}
 
-	private void createCrew(Course course, Scanner scanner) {
+	private void createBackendCrew(Course course, Scanner scanner) {
 		while(scanner.hasNext()) {
-			crewManager.addCrew(new Crew(course, scanner.next()));
+			backendManager.addCrew(new Crew(course, scanner.next()));
+		}
+	}
+
+	private void createFrontendCrew(Course course, Scanner scanner) {
+		while(scanner.hasNext()) {
+			frontendManager.addCrew(new Crew(course, scanner.next()));
 		}
 	}
 }

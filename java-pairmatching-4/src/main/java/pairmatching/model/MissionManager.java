@@ -15,10 +15,6 @@ public class MissionManager {
 		setMissions();
 	}
 
-	public List<Mission> getMissions() {
-		return missions;
-	}
-
 	public List<String> findByLevel(Level level) {
 		List<String> result = new ArrayList<>();
 		for(Mission mission : missions) {
@@ -27,6 +23,29 @@ public class MissionManager {
 			}
 		}
 		return result;
+	}
+
+	public Mission findByLevelAndName(String level, String missionName) {
+		for(Mission mission : missions) {
+			if(mission.getLevel() == Level.getLevel(level) && mission.getName().equals(missionName)) {
+				return mission;
+			}
+		}
+		return null;
+	}
+
+	public void matchPair(String level, String missionName, List<Pair> pairs) {
+		for(Mission mission : missions) {
+			if(mission.getLevel() == Level.getLevel(level) && mission.getName().equals(missionName)) {
+				mission.setPairs(pairs);
+			}
+		}
+	}
+
+	public void resetAllPairs() {
+		for(Mission mission : missions) {
+			mission.resetPairs();
+		}
 	}
 
 	private void setMissions() {

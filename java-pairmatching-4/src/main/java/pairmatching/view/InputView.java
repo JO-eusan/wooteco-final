@@ -18,12 +18,20 @@ public class InputView {
 		System.out.println(FUNCTION_3);
 		System.out.println(FUNCTION_Q);
 
-		return scanner.nextLine();
+		String input = scanner.nextLine();
+		validateFunction(input);
+		return input;
 	}
 
 	public String readWinningNumber() {
 		System.out.println(WINNING_NUMBER_MESSAGE);
 
 		return scanner.nextLine();
+	}
+
+	private void validateFunction(String input) {
+		if(!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
+			throw new IllegalArgumentException("제공하지 않는 기능입니다.");
+		}
 	}
 }

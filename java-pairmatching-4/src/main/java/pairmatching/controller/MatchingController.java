@@ -21,40 +21,48 @@ public class MatchingController {
 	}
 
 	public void startMatching() {
-		for(Crew crew : crewManager.getCrews()) {
-			System.out.println(crew);
-		}
-
-		selectFunction();
-	}
-
-	private void selectFunction() {
 		while(true) {
-			String function = inputView.readFunction();
-			try {
-				validateFunction(function);
-			} catch (IllegalArgumentException e) {
-				outputView.printErrorMessage(e);
-				selectFunction();
-			}
-
+			String function = selectFunction();
 			if(function.equals("Q")) {
 				break;
 			}
 
-			/* 1~3번까지 동작 */
-
-
-
+			executeFunction(Integer.parseInt(function));
 		}
 	}
 
-	private void validateFunction(String input) {
-		if(!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
-			throw new IllegalArgumentException("제공하지 않는 기능입니다.");
+	private String selectFunction() {
+		try {
+			String function = inputView.readFunction();
+			return function;
+		} catch(IllegalArgumentException e) {
+			outputView.printErrorMessage(e);
+			selectFunction();
+		}
+		return "";
+	}
+
+	private void executeFunction(int functionNumber) {
+		if(functionNumber == 1) {
+			pairMatching();
+		}
+		if(functionNumber == 2) {
+			pairCheck();
+		}
+		if(functionNumber == 3) {
+			pairReset();
 		}
 	}
 
+	private void pairMatching() {
 
+	}
 
+	private void pairCheck() {
+
+	}
+
+	private void pairReset() {
+
+	}
 }

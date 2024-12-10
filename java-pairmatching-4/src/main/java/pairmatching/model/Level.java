@@ -21,4 +21,9 @@ public enum Level {
 		}
 		throw new IllegalArgumentException("존재하지 않는 레벨입니다.");
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

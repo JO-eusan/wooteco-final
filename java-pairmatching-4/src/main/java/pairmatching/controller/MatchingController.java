@@ -55,10 +55,12 @@ public class MatchingController {
 	}
 
 	private void pairMatching() {
+		outputView.printCourse(missionManager);
 
 	}
 
 	private void pairCheck() {
+		outputView.printCourse(missionManager);
 
 	}
 

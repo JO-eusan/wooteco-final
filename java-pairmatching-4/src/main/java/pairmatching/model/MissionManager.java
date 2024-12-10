@@ -19,6 +19,16 @@ public class MissionManager {
 		return missions;
 	}
 
+	public List<String> findByLevel(Level level) {
+		List<String> result = new ArrayList<>();
+		for(Mission mission : missions) {
+			if(mission.getLevel() == level) {
+				result.add(mission.getName());
+			}
+		}
+		return result;
+	}
+
 	private void setMissions() {
 		createMission(Level.LEVEL1, LEVEL1_MISSIONS.split(" "));
 		createMission(Level.LEVEL2, LEVEL2_MISSIONS.split(" "));

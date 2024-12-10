@@ -26,7 +26,6 @@ public class MatchingController {
 			if(function.equals("Q")) {
 				break;
 			}
-
 			executeFunction(Integer.parseInt(function));
 		}
 	}
@@ -56,15 +55,28 @@ public class MatchingController {
 
 	private void pairMatching() {
 		outputView.printCourse(missionManager);
+		String[] selectedCourse = selectCourse();
 
 	}
 
 	private void pairCheck() {
 		outputView.printCourse(missionManager);
+		String[] selectedCourse = selectCourse();
 
 	}
 
 	private void pairReset() {
 
+	}
+
+	private String[] selectCourse() {
+		try {
+			String course = inputView.readCourse(missionManager);
+			return course.split(", ");
+		} catch(IllegalArgumentException e) {
+			outputView.printErrorMessage(e);
+			selectCourse();
+		}
+		return null;
 	}
 }

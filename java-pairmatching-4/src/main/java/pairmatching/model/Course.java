@@ -13,13 +13,13 @@ public enum Course {
 		this.name = name;
 	}
 
-	public static void validateInclusion(String input) {
+	public static boolean validateInclusion(String input) {
 		for(Course course : values()) {
 			if(course.name.equals(input)) {
-				return;
+				return true;
 			}
 		}
-		throw new IllegalArgumentException("존재하지 않는 코스입니다.");
+		return false;
 	}
 
 	public static List<String> getNames() {

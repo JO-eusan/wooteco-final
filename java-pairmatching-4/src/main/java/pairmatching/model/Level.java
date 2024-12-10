@@ -13,13 +13,22 @@ public enum Level {
 		this.name = name;
 	}
 
-	public static void validateInclusion(String input) {
+	public static boolean validateInclusion(String input) {
 		for(Level level : values()) {
 			if(level.name.equals(input)) {
-				return;
+				return true;
 			}
 		}
-		throw new IllegalArgumentException("존재하지 않는 레벨입니다.");
+		return false;
+	}
+
+	public static Level getLevel(String input) {
+		for(Level level : values()) {
+			if(level.name.equals(input)) {
+				return level;
+			}
+		}
+		return null;
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public enum LastDayOfMonth {
 
 	public static int getLastDayOfMonth(int month) {
 		for (LastDayOfMonth lastDayOfMonth : values()) {
-			if(lastDayOfMonth.month == month) {
+			if (lastDayOfMonth.month == month) {
 				return lastDayOfMonth.lastDayOfMonth;
 			}
 		}

@@ -17,7 +17,7 @@ public enum DayOfWeek {
 
 	public static boolean isDayOfWeek(String str) {
 		for (DayOfWeek dayOfWeek : values()) {
-			if(str.equals(dayOfWeek.name)) {
+			if (str.equals(dayOfWeek.name)) {
 				return true;
 			}
 		}
@@ -25,16 +25,16 @@ public enum DayOfWeek {
 	}
 
 	public static boolean isWeekend(String str) {
-		if(str.equals(SATURDAY.name) || str.equals(SUNDAY.name)) {
+		if (str.equals(SATURDAY.name) || str.equals(SUNDAY.name)) {
 			return true;
 		}
 		return false;
 	}
 
 	public static String getNextDay(String currentDay) {
-		for (int i=0; i< values().length; i++) {
-			if(currentDay.equals(values()[i].name)) {
-				return values()[(i+1) % values().length].name;
+		for (int i = 0; i < values().length; i++) {
+			if (currentDay.equals(values()[i].name)) {
+				return values()[(i + 1) % values().length].name;
 			}
 		}
 		return "";

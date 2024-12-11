@@ -22,7 +22,7 @@ public enum Holiday {
 
 	public static boolean isHoliday(int month, int dayOfMonth) {
 		for (Holiday holiday : values()) {
-			if(holiday.month == month && holiday.dayOfMonth == dayOfMonth) {
+			if (holiday.month == month && holiday.dayOfMonth == dayOfMonth) {
 				return true;
 			}
 		}

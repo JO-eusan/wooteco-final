@@ -31,7 +31,7 @@ public class CalenderGenerator {
 		List<OneDay> days = new ArrayList<>();
 		int lastDayOfMonth = LastDayOfMonth.getLastDayOfMonth(month);
 		String currentDayOfWeek = startDayOfWeek;
-		for(int i=1; i<=lastDayOfMonth; i++) {
+		for (int i = 1; i <= lastDayOfMonth; i++) {
 			days.add(new OneDay(month, i, currentDayOfWeek));
 			currentDayOfWeek = DayOfWeek.getNextDay(currentDayOfWeek);
 		}
@@ -39,7 +39,7 @@ public class CalenderGenerator {
 	}
 
 	private void validateSize(String[] input) {
-		if(input.length != 2) {
+		if (input.length != 2) {
 			throw new IllegalArgumentException("월(숫자)와 요일 모두 입력하세요");
 		}
 	}
@@ -47,16 +47,16 @@ public class CalenderGenerator {
 	private void validateMonth(String month) {
 		try {
 			int monthNumber = Integer.parseInt(month);
-			if(monthNumber < 1 || monthNumber > 12) {
+			if (monthNumber < 1 || monthNumber > 12) {
 				throw new IllegalArgumentException("1~12만 입력 가능합니다.");
 			}
-		} catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("월은 숫자여야 합니다.");
 		}
 	}
 
 	private void validateDayOfWeek(String dayOfWeek) {
-		if(!DayOfWeek.isDayOfWeek(dayOfWeek)) {
+		if (!DayOfWeek.isDayOfWeek(dayOfWeek)) {
 			throw new IllegalArgumentException("일~월만 입력 가능합니다.");
 		}
 	}

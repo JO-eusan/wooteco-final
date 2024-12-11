@@ -14,7 +14,7 @@ public class OneDay {
 	}
 
 	public boolean isDayOffWork() {
-		if(isHoliday || DayOfWeek.isWeekend(dayOfWeek)) {
+		if (isHoliday || DayOfWeek.isWeekend(dayOfWeek)) {
 			return true;
 		}
 		return false;
@@ -22,7 +22,7 @@ public class OneDay {
 
 	@Override
 	public String toString() {
-		if(isHoliday && !DayOfWeek.isWeekend(dayOfWeek)) {
+		if (isHoliday && !DayOfWeek.isWeekend(dayOfWeek)) {
 			return String.format("%d월 %d일 %s(휴일)", month, dayOfMonth, dayOfWeek);
 		}
 		return String.format("%d월 %d일 %s", month, dayOfMonth, dayOfWeek);

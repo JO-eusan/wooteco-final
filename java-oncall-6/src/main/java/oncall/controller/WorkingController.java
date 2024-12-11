@@ -2,8 +2,8 @@ package oncall.controller;
 
 import oncall.model.CalenderGenerator;
 import oncall.model.SequenceManager;
-import oncall.model.domain.DayOffWork;
-import oncall.model.domain.DayWork;
+import oncall.model.DayOffWork;
+import oncall.model.DayWork;
 import oncall.view.InputView;
 import oncall.view.OutputView;
 

@@ -54,6 +54,7 @@ public class WorkingController {
 	private void createWorksheet() {
 		sequenceManager.addWorkers(calenderGenerator, dayWork, dayOffWork);
 		sequenceManager.changeDuplicate();
+		outputView.printWorkingSheet(calenderGenerator, sequenceManager);
 	}
 
 }

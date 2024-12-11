@@ -1,6 +1,7 @@
 package oncall.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class SequenceManager {
 		this.orderResult = new ArrayList<>();
 	}
 
+	public List<String> getOrderResult() {
+		return orderResult;
+	}
+
 	public void addWorkers(CalenderGenerator calenderGenerator, DayWork dayWork, DayOffWork dayOffWork) {
 		for(OneDay day : calenderGenerator.getAllDay()) {
 			if(day.isDayOffWork()) {
@@ -26,9 +31,9 @@ public class SequenceManager {
 	}
 
 	public void changeDuplicate() {
-		for(int i=0; i<orderResult.size() - 1; i++) {
+		for(int i=0; i<orderResult.size() - 2; i++) {
 			if(isDuplicate(orderResult.get(i), orderResult.get(i+1))) {
-				Collections.swap(orderResult, i, i+1);
+				Collections.swap(orderResult, i+1, i+2);
 			}
 		}
 	}

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Queue;
 
 public class DayOffWork {
 	private List<String> names;
+	private String nextWorker;
 
 	public DayOffWork(String input) {
 		String[] names = input.split(",");
@@ -14,13 +16,17 @@ public class DayOffWork {
 		validateDuplicate(names);
 
 		this.names = Arrays.asList(names);
+		this.nextWorker = names[0];
 	}
 
 	public String pickWorker() {
-		String pick = names.get(0);
-		names.remove(0);
-		names.add(pick);
+		String pick = this.nextWorker;
 
+		for(int i=0; i<names.size(); i++) {
+			if(pick.equals(names.get(i))) {
+				this.nextWorker = names.get((i+1) % names.size());
+			}
+		}
 		return pick;
 	}
 

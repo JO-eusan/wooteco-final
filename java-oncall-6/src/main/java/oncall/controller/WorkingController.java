@@ -1,6 +1,7 @@
 package oncall.controller;
 
 import oncall.model.CalenderGenerator;
+import oncall.model.SequenceManager;
 import oncall.model.domain.DayOffWork;
 import oncall.model.domain.DayWork;
 import oncall.view.InputView;
@@ -9,6 +10,7 @@ import oncall.view.OutputView;
 public class WorkingController {
 	private InputView inputView;
 	private OutputView outputView;
+	private SequenceManager sequenceManager;
 	private CalenderGenerator calenderGenerator;
 	private DayWork dayWork;
 	private DayOffWork dayOffWork;
@@ -16,12 +18,13 @@ public class WorkingController {
 	public WorkingController() {
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
+		this.sequenceManager = new SequenceManager();
 	}
 
 	public void startAssignment() {
 		createCalender();
 		createWorker();
-
+		createWorksheet();
 	}
 
 	private void createCalender() {
@@ -46,6 +49,11 @@ public class WorkingController {
 			outputView.printErrorMessage(e);
 			createWorker();
 		}
+	}
+
+	private void createWorksheet() {
+		sequenceManager.addWorkers(calenderGenerator, dayWork, dayOffWork);
+		sequenceManager.changeDuplicate();
 	}
 
 }

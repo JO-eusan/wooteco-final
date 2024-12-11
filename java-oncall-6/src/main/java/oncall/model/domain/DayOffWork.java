@@ -16,6 +16,14 @@ public class DayOffWork {
 		this.names = Arrays.asList(names);
 	}
 
+	public String pickWorker() {
+		String pick = names.get(0);
+		names.remove(0);
+		names.add(pick);
+
+		return pick;
+	}
+
 	public void validateSize(List<String> dayWorker) {
 		HashSet<String> allNames = new HashSet<>();
 		for(String name : dayWorker) {

@@ -13,6 +13,13 @@ public class OneDay {
 		this.isHoliday = Holiday.isHoliday(month, dayOfMonth);
 	}
 
+	public boolean isDayOffWork() {
+		if(isHoliday || DayOfWeek.isWeekend(dayOfWeek)) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		if(isHoliday && !DayOfWeek.isWeekend(dayOfWeek)) {

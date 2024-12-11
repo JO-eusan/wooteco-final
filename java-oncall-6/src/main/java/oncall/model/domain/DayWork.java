@@ -15,6 +15,14 @@ public class DayWork {
 		this.names = Arrays.asList(names);
 	}
 
+	public String pickWorker() {
+		String pick = names.get(0);
+		names.remove(0);
+		names.add(pick);
+
+		return pick;
+	}
+
 	public List<String> getNames() {
 		return names;
 	}

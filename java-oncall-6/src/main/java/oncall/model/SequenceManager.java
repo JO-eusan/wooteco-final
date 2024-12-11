@@ -1,4 +1,4 @@
-package oncall.model.domain;
+package oncall.model;
 
 import java.util.List;
 

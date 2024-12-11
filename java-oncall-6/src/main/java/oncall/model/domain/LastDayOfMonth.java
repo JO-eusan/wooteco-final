@@ -22,7 +22,7 @@ public enum LastDayOfMonth {
 		this.lastDayOfMonth = lastDayOfMonth;
 	}
 
-	private static int getLastDayOfMonth(int month) {
+	public static int getLastDayOfMonth(int month) {
 		for (LastDayOfMonth lastDayOfMonth : values()) {
 			if(lastDayOfMonth.month == month) {
 				return lastDayOfMonth.lastDayOfMonth;

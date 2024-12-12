@@ -41,7 +41,7 @@ public class Consumer {
 		List<PurchasedProduct> purchasedProducts = new ArrayList<>();
 		for(String token : tokens) {
 			String[] productAndQuantity = token.substring(1, token.length()-1).split("-");
-			purchasedProducts.add(new PurchasedProduct(inventory.findByName(productAndQuantity[0]), 0, 0));
+			purchasedProducts.add(new PurchasedProduct(inventory.findByName(productAndQuantity[0]), 0, 0, 0));
 		}
 		return purchasedProducts;
 	}

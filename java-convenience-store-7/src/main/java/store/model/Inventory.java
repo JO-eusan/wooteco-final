@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import store.model.domain.Product;
+import store.model.domain.Promotion;
 
 public class Inventory {
 	private List<Product> products;
@@ -18,6 +19,15 @@ public class Inventory {
 
 	public void addProduct(Product product) {
 		products.add(product);
+	}
+
+	public Product findByName(String name) {
+		for(Product product : products) {
+			if(name.equals(product.getName())) {
+				return product;
+			}
+		}
+		return null;
 	}
 
 	public void createGeneralProduct() {

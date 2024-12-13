@@ -17,8 +17,6 @@
 * domain
   * Category: `enum type`으로 카테고리 이름과 각 이름들이 `string`으로 저장
   * Coach: 각 코치마다 이름과 `월~금`의 추천될 메뉴 및 못 먹는 메뉴를 저장
-* generator
-  * RandomGenerator: 카테고리와 메뉴를 랜덤으로 뽑아주는 역할
 * manager
   * CategoryManager: 월요일부터 금요일까지의 카테고리를 뽑음
   * CoachManger: 각 코치들의 메뉴 추천을 총괄

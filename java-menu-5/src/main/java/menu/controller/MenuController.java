@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.model.CategoryManager;
 import menu.model.CoachManager;
 import menu.model.domain.Coach;
 import menu.view.InputView;
@@ -9,16 +10,17 @@ public class MenuController {
 	private InputView inputView;
 	private OutputView outputView;
 	private CoachManager coachManager;
+	private CategoryManager categoryManager;
 
 	public MenuController() {
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
 	}
 
-	public void recommend() {
+	public void startRecommend() {
 		createCoaches();
 		enterHateMenus();
-
+		recommend();
 	}
 
 	private void createCoaches() {
@@ -41,6 +43,12 @@ public class MenuController {
 				enterHateMenus();
 			}
 		}
+	}
+
+	private void recommend() {
+		this.categoryManager = new CategoryManager();
+
+
 	}
 
 }

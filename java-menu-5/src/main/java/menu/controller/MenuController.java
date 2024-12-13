@@ -15,6 +15,7 @@ public class MenuController {
 	public MenuController() {
 		this.inputView = new InputView();
 		this.outputView = new OutputView();
+		this.categoryManager = new CategoryManager();
 	}
 
 	public void startRecommend() {
@@ -46,9 +47,7 @@ public class MenuController {
 	}
 
 	private void recommend() {
-		this.categoryManager = new CategoryManager();
-
-
+		coachManager.recommendMenus(categoryManager);
+		outputView.printResult(categoryManager, coachManager);
 	}
-
 }

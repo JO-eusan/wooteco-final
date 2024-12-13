@@ -19,6 +19,14 @@ public class CoachManager {
 		return coaches;
 	}
 
+	public void recommendMenus(CategoryManager categoryManager) {
+		for(int i=0; i<5; i++) {
+			for(Coach coach : coaches) {
+				coach.addPickedMenus(categoryManager.getPickedCategory().get(i));
+			}
+		}
+	}
+
 	private List<Coach> createCoaches(String[] tokens) {
 		List<Coach> coaches = new ArrayList<>();
 

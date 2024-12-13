@@ -3,6 +3,8 @@ package menu.model.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public enum Category {
 	JAPANESE("일식", "규동,우동,미소시루,스시,가츠동,오니기리,하이라이스,라멘,오코노미야끼"),
 	KOREAN("한식", "김밥,김치찌개,쌈밥,된장찌개,비빔밥,칼국수,불고기,떡볶이,제육볶음"),
@@ -33,6 +35,13 @@ public enum Category {
 		return values()[index - 1];
 	}
 
-
-
+	public static String pickMenu(Category pickedCategory) {
+		for(Category category : values()) {
+			if(category == pickedCategory) {
+				List<String> menus = Arrays.asList(category.menus.split(","));
+				return Randoms.shuffle(menus).get(0);
+			}
+		}
+		return "";
+	}
 }

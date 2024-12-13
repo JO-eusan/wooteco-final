@@ -19,6 +19,18 @@ public class CategoryManager {
 		this.pickedCategory = createCategories();
 	}
 
+	public List<Category> getPickedCategory() {
+		return pickedCategory;
+	}
+
+	public List<String> getCategoryNames() {
+		List<String> names = new ArrayList<>();
+		for(Category category : pickedCategory) {
+			names.add(category.name);
+		}
+		return names;
+	}
+
 	private List<Category> createCategories() {
 		List<Category> categories = new ArrayList<>();
 		for(int i=0; i<5; i++) {

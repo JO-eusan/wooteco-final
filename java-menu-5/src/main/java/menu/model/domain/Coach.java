@@ -1,24 +1,45 @@
 package menu.model.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import menu.model.CategoryManager;
 
 public class Coach {
 	private String name;
 	private List<String> hateMenus;
+	private List<String> pickedMenus;
 
 	public Coach(String name) {
 		validateName(name);
 		this.name = name;
+		this.pickedMenus = new ArrayList<>();
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public List<String> getPickedMenus() {
+		return pickedMenus;
+	}
+
 	public void addHateMenus(String menus) {
 		validateHateMenus(menus);
 		this.hateMenus = Arrays.asList(menus.split(","));
+	}
+
+	public void addPickedMenus(Category category) {
+		pickedMenus.add(pickMenu(category));
+	}
+
+	private String pickMenu(Category category) {
+		String menu = Category.pickMenu(category);
+		while(pickedMenus.contains(menu) || hateMenus.contains(menu)) {
+			menu = Category.pickMenu(category);
+		}
+		return menu;
 	}
 
 	private void validateName(String name) {
